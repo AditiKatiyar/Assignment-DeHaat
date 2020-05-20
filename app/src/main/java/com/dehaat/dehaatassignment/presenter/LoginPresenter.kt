@@ -30,6 +30,13 @@ class LoginPresenter(private val view: ILoginView,
         interactor.authenticateUser(email, password, this)
     }
 
+    override fun checkIfAlreadyLoggedIn() {
+        val token = DataStore(context).getAuthToken()
+        if (token != null && token != "") {
+            router.openMainActivity()
+        }
+    }
+
     private fun isValidEmail(email: String?): Boolean {
         email?.apply {
             return !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()

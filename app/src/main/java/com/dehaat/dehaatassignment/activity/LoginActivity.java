@@ -32,6 +32,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         presenter = new LoginPresenter(this, new LoginRouter(this), this);
 
         loginButton.setOnClickListener(this);
+
+        presenter.checkIfAlreadyLoggedIn();
     }
 
 

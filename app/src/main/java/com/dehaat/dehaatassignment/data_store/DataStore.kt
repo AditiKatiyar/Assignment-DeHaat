@@ -13,7 +13,7 @@ class DataStore(val context: Context) {
 
     fun storeAuthToken(token: String) {
         val sharedPrefEditor = context.getSharedPreferences(APP_SHARED_PREF, MODE_PRIVATE).edit()
-        sharedPrefEditor.putString("", token)
+        sharedPrefEditor.putString(TOKEN, token)
         sharedPrefEditor.apply()
     }
 
