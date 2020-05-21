@@ -21,10 +21,12 @@ public class AuthorAdapter extends RecyclerView.Adapter<AuthorAdapter.AuthorView
 
     private ArrayList<AuthorDetails> list;
     private Context context;
+    private Boolean isLandscape;
 
-    public AuthorAdapter(Context context, ArrayList<AuthorDetails> list) {
+    public AuthorAdapter(Context context, ArrayList<AuthorDetails> list, Boolean isLandscape) {
         this.context = context;
         this.list = list;
+        this.isLandscape = isLandscape;
     }
 
     @NonNull
@@ -47,7 +49,13 @@ public class AuthorAdapter extends RecyclerView.Adapter<AuthorAdapter.AuthorView
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
                     BookFragment fragment = BookFragment.Companion.getInstance(details.getBooks());
-                    transaction.replace(R.id.frame_layout, fragment);
+
+                    if (isLandscape != null && isLandscape) {
+                        transaction.replace(R.id.frame_layout_2, fragment);
+                    } else {
+                        transaction.replace(R.id.frame_layout, fragment);
+                    }
+
                     transaction.addToBackStack(null);
                     transaction.commit();
                 }

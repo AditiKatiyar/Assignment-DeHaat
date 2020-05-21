@@ -16,11 +16,13 @@ import com.dehaat.dehaatassignment.model.AuthorDetails
 class AuthorFragment : Fragment(R.layout.fragment_author) {
 
     companion object {
-        private val MESSAGE_DATA = "message_data";
+        private val MESSAGE_DATA = "message_data"
+        private val IS_LANDSCAPE = "is_landscape"
 
-        fun getInstance(list: ArrayList<AuthorDetails?>?): AuthorFragment {
+        fun getInstance(list: ArrayList<AuthorDetails?>?, isLandscape: Boolean): AuthorFragment {
             val bundle = Bundle()
             bundle.putParcelableArrayList(MESSAGE_DATA, list)
+            bundle.putBoolean(IS_LANDSCAPE, isLandscape)
             val fragment = AuthorFragment()
             fragment.arguments = bundle
             return fragment
@@ -33,7 +35,8 @@ class AuthorFragment : Fragment(R.layout.fragment_author) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.author_rv)
         recyclerView.layoutManager = LinearLayoutManager(context)
         val list = arguments?.getParcelableArrayList<AuthorDetails?>(MESSAGE_DATA)
-        list?.apply { recyclerView.adapter = AuthorAdapter(context, list) }
+        val isLandscape = arguments?.getBoolean(IS_LANDSCAPE)
+        list?.apply { recyclerView.adapter = AuthorAdapter(context, list, isLandscape) }
     }
 
 }

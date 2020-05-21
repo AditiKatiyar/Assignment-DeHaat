@@ -1,5 +1,6 @@
 package com.dehaat.dehaatassignment.activity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements IMainView {
 
     private IMainPresenter presenter;
+    private boolean isLandscape = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,13 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
         presenter = new MainPresenter(this, new MainRouter(this), this);
         presenter.fetchAuthors(listener);
+
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            isLandscape = true;
+        } else {
+            isLandscape = false;
+        }
     }
 
     private UpdateMainViewListener listener = new UpdateMainViewListener() {
@@ -36,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
             // update recycler view
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            AuthorFragment fragment = AuthorFragment.Companion.getInstance(list);
+            AuthorFragment fragment = AuthorFragment.Companion.getInstance(list, isLandscape);
             transaction.replace(R.id.frame_layout, fragment);
             transaction.addToBackStack(null);
             transaction.commit();
