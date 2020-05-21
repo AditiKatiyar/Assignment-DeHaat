@@ -4,6 +4,7 @@ package com.dehaat.dehaatassignment.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dehaat.dehaatassignment.R
@@ -37,6 +38,7 @@ class AuthorFragment : Fragment(R.layout.fragment_author) {
         val list = arguments?.getParcelableArrayList<AuthorDetails?>(MESSAGE_DATA)
         val isLandscape = arguments?.getBoolean(IS_LANDSCAPE)
         list?.apply { recyclerView.adapter = AuthorAdapter(context, list, isLandscape) }
+        recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     }
 
 }
