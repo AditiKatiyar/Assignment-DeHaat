@@ -7,9 +7,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dehaat.dehaatassignment.R;
+import com.dehaat.dehaatassignment.fragment.BookFragment;
 import com.dehaat.dehaatassignment.model.AuthorDetails;
 
 import java.util.ArrayList;
@@ -33,8 +36,23 @@ public class AuthorAdapter extends RecyclerView.Adapter<AuthorAdapter.AuthorView
 
     @Override
     public void onBindViewHolder(@NonNull AuthorViewHolder holder, int position) {
-        holder.authorName.setText(list.get(position).getName());
-        holder.authorBio.setText(list.get(position).getBio());
+        final AuthorDetails details = list.get(position);
+        if (details != null) {
+            holder.authorName.setText(details.getName());
+            holder.authorBio.setText(details.getBio());
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                    FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                    BookFragment fragment = BookFragment.Companion.getInstance(details.getBooks());
+                    transaction.replace(R.id.frame_layout, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+            });
+        }
     }
 
     @Override

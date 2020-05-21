@@ -1,12 +1,12 @@
 package com.dehaat.dehaatassignment.activity;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.dehaat.dehaatassignment.R;
+import com.dehaat.dehaatassignment.fragment.AuthorFragment;
 import com.dehaat.dehaatassignment.listeners.UpdateMainViewListener;
 import com.dehaat.dehaatassignment.model.AuthorDetails;
 import com.dehaat.dehaatassignment.presenter.IMainPresenter;
@@ -33,13 +33,15 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     private UpdateMainViewListener listener = new UpdateMainViewListener() {
         @Override
         public void updateView(@Nullable ArrayList<AuthorDetails> list) {
-            // update recycler view
 
+            // update recycler view
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            AuthorFragment fragment = AuthorFragment.Companion.getInstance(list);
+            transaction.replace(R.id.frame_layout, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
     };
 
-    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-    }
+
 }
