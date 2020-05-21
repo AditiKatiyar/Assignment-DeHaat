@@ -1,9 +1,10 @@
 package com.dehaat.dehaatassignment.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.dehaat.dehaatassignment.R;
 import com.dehaat.dehaatassignment.listeners.UpdateMainViewListener;
@@ -36,4 +37,9 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
         }
     };
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
 }
