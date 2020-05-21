@@ -2,7 +2,10 @@ package com.dehaat.dehaatassignment.activity;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -52,5 +55,18 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         }
     };
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.app_menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                presenter.onLogoutOptionClick();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

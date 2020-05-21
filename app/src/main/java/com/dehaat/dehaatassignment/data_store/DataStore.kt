@@ -21,4 +21,10 @@ class DataStore(val context: Context) {
         return context.getSharedPreferences(APP_SHARED_PREF, MODE_PRIVATE)
                 .getString(TOKEN, "")
     }
+
+    fun eraseAuthToken() {
+        val sharedPrefEditor = context.getSharedPreferences(APP_SHARED_PREF, MODE_PRIVATE).edit()
+        sharedPrefEditor.remove(TOKEN)
+        sharedPrefEditor.apply()
+    }
 }

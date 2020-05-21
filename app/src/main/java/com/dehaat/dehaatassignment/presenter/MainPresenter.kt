@@ -2,6 +2,7 @@ package com.dehaat.dehaatassignment.presenter
 
 import android.content.Context
 import com.dehaat.dehaatassignment.activity.IMainView
+import com.dehaat.dehaatassignment.data_store.DataStore
 import com.dehaat.dehaatassignment.interactor.IMainInteractor
 import com.dehaat.dehaatassignment.interactor.MainInteractor
 import com.dehaat.dehaatassignment.listeners.AuthorsResponseListener
@@ -17,7 +18,7 @@ class MainPresenter(private val view: IMainView,
     private val interactor: IMainInteractor by lazy { MainInteractor() }
 
     override fun fetchAuthors(listener: UpdateMainViewListener) {
-        interactor.fetchAuthors(object : AuthorsResponseListener{
+        interactor.fetchAuthors(object : AuthorsResponseListener {
             override fun onResponse(response: Response<Data?>) {
                 response.body()?.list?.let { list ->
                     // update view
@@ -36,6 +37,11 @@ class MainPresenter(private val view: IMainView,
             }
 
         })
+    }
+
+    override fun onLogoutOptionClick() {
+        DataStore(context).eraseAuthToken()
+        router.openLoginActivity()
     }
 
 }
