@@ -3,6 +3,7 @@ package com.dehaat.dehaatassignment.rest;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.dehaat.dehaatassignment.model.Data;
 import com.dehaat.dehaatassignment.model.UserAuthDetails;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;

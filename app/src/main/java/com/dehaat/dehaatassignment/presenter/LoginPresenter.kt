@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Patterns
 import com.dehaat.dehaatassignment.activity.ILoginView
 import com.dehaat.dehaatassignment.data_store.DataStore
+import com.dehaat.dehaatassignment.interactor.ILoginInteractor
 import com.dehaat.dehaatassignment.interactor.LoginInteractor
 import com.dehaat.dehaatassignment.listeners.UserAuthResonseListener
 import com.dehaat.dehaatassignment.model.UserAuthDetails
@@ -14,7 +15,7 @@ class LoginPresenter(private val view: ILoginView,
                      private val router: ILoginRouter,
                      private val context: Context) : ILoginPresenter, UserAuthResonseListener {
 
-    private val interactor by lazy { LoginInteractor() }
+    private val interactor: ILoginInteractor by lazy { LoginInteractor() }
 
     override fun onLoginButtonClick(email: String, password: String) {
         if (!isValidEmail(email)) {

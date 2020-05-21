@@ -1,10 +1,7 @@
 package com.dehaat.dehaatassignment.rest;
 
-import com.dehaat.dehaatassignment.model.Author;
+import com.dehaat.dehaatassignment.model.Data;
 import com.dehaat.dehaatassignment.model.UserAuthDetails;
-import com.google.gson.JsonElement;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -22,6 +19,6 @@ public interface AppRestClientService {
     );
 
     @GET("/dehaat/authors")
-    Call<JsonElement> getListOfAuthors();
+    Call<Data> getListOfAuthors();
 
 }
