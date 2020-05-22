@@ -5,8 +5,16 @@ public class Book {
     private String title;
     private String description;
     private String publisher;
-    private String published_date;
-    private Float price;
+    private String publishedDate;
+    private String price;
+
+    public Book(String title, String description, String publisher, String publishedDate, String price){
+        this.title = title;
+        this.description = description;
+        this.publisher = publisher;
+        this.publishedDate = publishedDate;
+        this.price = price;
+    }
 
     public String getTitle() {
         return title;
@@ -32,19 +40,19 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public String getPublished_date() {
-        return published_date;
+    public String getPublishedDate() {
+        return publishedDate;
     }
 
-    public void setPublished_date(String published_date) {
-        this.published_date = published_date;
+    public void setPublishedDate(String publishedDate) {
+        this.publishedDate = publishedDate;
     }
 
-    public Float getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 }
