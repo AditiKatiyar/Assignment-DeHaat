@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dehaat.dehaatassignment.R;
+import com.dehaat.dehaatassignment.activity.ExpandableTextview;
 import com.dehaat.dehaatassignment.fragment.BookFragment;
 import com.dehaat.dehaatassignment.model.AuthorDetails;
 
@@ -70,7 +71,7 @@ public class AuthorAdapter extends RecyclerView.Adapter<AuthorAdapter.AuthorView
 
     class AuthorViewHolder extends RecyclerView.ViewHolder {
         TextView authorName;
-        TextView authorBio;
+        ExpandableTextview authorBio;
 
         public AuthorViewHolder(@NonNull View itemView) {
             super(itemView);
