@@ -68,4 +68,11 @@ class DataStore(val context: Context) {
             RetrieveFromDBAsyncTask(database, listener).execute()
         }
     }
+
+    fun eraseDB() {
+        Thread {
+            database?.authorDao?.deleteAuthors()
+            database?.bookDao?.deleteBooks()
+        }.start()
+    }
 }

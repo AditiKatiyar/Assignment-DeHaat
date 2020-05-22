@@ -13,4 +13,7 @@ interface BookDao {
 
     @Query("select * from BookEntity where authorName = :author")
     fun getBooksForAuthor(author: String): List<BookEntity?>?
+
+    @Query("delete from BookEntity")
+    fun deleteBooks()
 }

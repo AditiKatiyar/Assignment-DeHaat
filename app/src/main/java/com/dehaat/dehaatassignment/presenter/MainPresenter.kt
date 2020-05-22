@@ -54,7 +54,10 @@ class MainPresenter(private val view: IMainView,
     }
 
     override fun onLogoutOptionClick() {
-        DataStore(context).eraseAuthToken()
+        DataStore(context).apply {
+            eraseAuthToken()
+            eraseDB()
+        }
         router.openLoginActivity()
     }
 

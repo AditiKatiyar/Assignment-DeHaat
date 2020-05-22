@@ -13,4 +13,7 @@ interface AuthorDao {
 
     @Query("select * from AuthorEntity")
     fun getAuthors(): List<AuthorEntity?>?
+
+    @Query("delete from AuthorEntity")
+    fun deleteAuthors()
 }
